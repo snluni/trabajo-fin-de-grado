@@ -12,20 +12,20 @@
         //each button change a row of the transform matrix
         //transformation matrix
         let tMatrix = [[], [], []];
-        
+
 
         AFRAME.registerComponent('calculate', {
             schema: {},
             init: function () {
                 //get component
                 let el = this.el;
-                
+
                 //add events to the component
                 el.addEventListener('mouseenter', function () {
                     let clickedButton = event.target;
 
                     //change color of the button
-                    el.setAttribute('material', { color: 'purple'});
+                    el.setAttribute('material', { color: 'purple' });
 
                     let scene = document.querySelector('a-scene');
                     //get graphic if it exists
@@ -64,28 +64,23 @@
                                 }
                             }
                             else {// 1,2 and 3 buttons
-                                console.log('button clicked');
-                                console.log(tMatrix);
-                                console.log('--------');
+
                                 //check if matrix is not empty
                                 if (tMatrix[0].length != 0 && tMatrix[1].length != 0 && tMatrix[2].length != 0) {
                                     let newRow = [];
                                     for (let i = 0; i < json.length; i++) {
-                                        newRow.push(20);
+                                        newRow.push(Math.random() - Math.random());
                                     }
-                                    console.log('new row');
-                                    console.log(newRow);
-                                    console.log(tMatrix);
+
                                     tMatrix[parseInt(button) - 1] = newRow;
+                                    console.log('new transformation matrix');
                                     console.log(tMatrix);
                                 }
                             }
 
                             //check tMatrix is not empty
                             if (tMatrix[0].length != 0 && tMatrix[1].length != 0 && tMatrix[2].length != 0) {
-                                console.log('before multiply');
-                                console.log(tMatrix);
-                                console.log(json);
+
                                 let result = math.multiply(tMatrix, json);
                                 //turn matrix result into a json                                                        
                                 for (let i = 0; i < result.length; i++) {
